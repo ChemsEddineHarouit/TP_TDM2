@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="wrap_content"
+                                             android:onClick="annonceClicked">
+
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/row_annonce_description" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp" app:layout_constraintBottom_toTopOf="@+id/row_annonce_prix"
+            android:layout_marginBottom="36dp" app:layout_constraintEnd_toStartOf="@+id/row_annonce_img"
+            android:layout_marginEnd="8dp" app:layout_constraintHorizontal_bias="0.049"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="69dp"
+            android:layout_height="31dp"
+            android:id="@+id/row_annonce_prix"
+            app:layout_constraintEnd_toStartOf="@+id/row_annonce_img" android:layout_marginEnd="52dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintHorizontal_bias="1.0"
+            android:layout_marginBottom="80dp" app:layout_constraintBottom_toBottomOf="parent"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/row_annonce_titre" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp" app:layout_constraintBottom_toTopOf="@+id/row_annonce_description"
+            android:layout_marginBottom="28dp" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.186"
+            android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/row_annonce_img"/>
+    <ImageView
+            android:onClick="annonceClicked"
+            android:layout_width="123dp"
+            android:layout_height="125dp" app:srcCompat="@android:color/holo_purple"
+            android:id="@+id/row_annonce_img" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.0"
+            android:layout_marginEnd="36dp" app:layout_constraintEnd_toEndOf="parent"/>
+</android.support.constraint.ConstraintLayout>
