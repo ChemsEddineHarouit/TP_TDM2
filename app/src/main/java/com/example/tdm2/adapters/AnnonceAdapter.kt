@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.tdm2.R
+import com.example.tdm2.controllers.AnnonceController
+import com.example.tdm2.controllers.Media
 import com.example.tdm2.models.Annonce
 
 
@@ -21,13 +23,17 @@ class AnnonceAdapter( annonceList: List<Annonce>): RecyclerView.Adapter<AnnonceA
         val annonce = annonceList[position]
         holder.titre.text = annonce.titre
         holder.description.text = annonce.description
-//        val img_id = annonce.listPhotos?.first()
-//        if(img_id != null)  holder?.img?.setImageResource(img_id)
-//        holder?.img?.setTag(annonce.numero)
+
+        val img_url = annonce.listPhotos?.first()
+        if(img_url != null){
+
+            val img_drawable = Media.loadDrawableFromUrl(img_url)
+            if(img_drawable != null) {
+                holder.img.setImageDrawable(img_drawable)
+            }
+        }
         holder.prix.text = "${annonce.prix} DA"
         holder.img.setTag(position)
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

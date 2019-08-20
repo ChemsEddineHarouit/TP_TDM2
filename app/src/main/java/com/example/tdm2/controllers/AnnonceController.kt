@@ -1,6 +1,10 @@
 package com.example.tdm2.controllers
 
 import com.example.tdm2.models.Annonce
+import android.graphics.drawable.Drawable
+import java.io.InputStream
+import java.net.URL
+
 
 class AnnonceController private constructor(){
 
@@ -25,7 +29,7 @@ class AnnonceController private constructor(){
         annonceList.add(
             Annonce(3, "location", "villa", "localisation3", "titre3", 200,
                 "description3", 700000, "tél 00003",
-                null,
+                listOf("https://d1ez3020z2uu9b.cloudfront.net/imagecache/rental-homes-photos-spain/Original/7331/1653978-7331-Adeje-Villa_Crop_725_600.jpg"),
                 null))
 
         annonceList.add(
@@ -41,6 +45,9 @@ class AnnonceController private constructor(){
                 null))
         //End of static filling
     }
+
+
+
 
 
 
