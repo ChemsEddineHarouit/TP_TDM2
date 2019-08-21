@@ -1,19 +1,18 @@
 package com.example.tdm2.controllers
 
-import com.example.tdm2.models.Annonce
 import android.graphics.drawable.Drawable
 import java.io.InputStream
 import java.net.URL
 
 
-class Media private constructor(){
+class MediaController private constructor(){
 
     private object Holder{
-        val INSTANCE= Media()
+        val INSTANCE= MediaController()
     }
 
     companion object {
-        val instance: Media by lazy { Holder.INSTANCE }
+        val INSTANCE: MediaController by lazy { Holder.INSTANCE }
 
         fun loadDrawableFromUrl(url: String): Drawable? {
             try {

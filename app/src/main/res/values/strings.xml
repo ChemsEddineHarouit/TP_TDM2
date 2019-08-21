@@ -4,4 +4,11 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_annonce_detail">annonce_detail</string>
+    <string-array name="annonce_categorie_filter_data">
+        <item value="">Sélectionnez une catégorie</item>
+        <item value="vente">Vente</item>
+        <item value="location">Location</item>
+        <item value="locationvacances">Location Vacances</item>
+        <item value="echange">Echange</item>
+    </string-array>
 </resources>

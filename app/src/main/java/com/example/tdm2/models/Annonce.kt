@@ -1,6 +1,8 @@
 package com.example.tdm2.models
 
-class Annonce(id : Int, categorie : String, type : String, localisation : String,
+import com.example.tdm2.enumerations.Wilaya
+
+class Annonce(id : Int, categorie : String, type : String, localisation : String, wilaya: Wilaya,
               titre : String, surface : Int, description : String, prix : Int, contact : String,
               listPhotos : List<String>?, listVideo : List<String>?){
     val id = id
@@ -8,6 +10,7 @@ class Annonce(id : Int, categorie : String, type : String, localisation : String
     val categorie = categorie
     val type = type
     val localisation = localisation
+    val wilaya = wilaya
     val surface = surface
     val description = description
     val prix = prix

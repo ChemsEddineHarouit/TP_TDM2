@@ -7,7 +7,7 @@ import com.example.tdm2.controllers.AnnonceController
 
 import kotlinx.android.synthetic.main.activity_annonce_detail.*
 
-class AnnonceDetail : AppCompatActivity() {
+class AnnonceDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
