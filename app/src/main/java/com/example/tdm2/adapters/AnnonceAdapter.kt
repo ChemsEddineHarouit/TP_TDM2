@@ -11,6 +11,8 @@ import android.widget.TextView
 import com.example.tdm2.R
 import com.example.tdm2.controllers.MediaController
 import com.example.tdm2.models.Annonce
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class AnnonceAdapter( annonceList: List<Annonce>): RecyclerView.Adapter<AnnonceAdapter.ViewHolder>(), Filterable{
@@ -38,7 +40,7 @@ class AnnonceAdapter( annonceList: List<Annonce>): RecyclerView.Adapter<AnnonceA
             holder.img.setImageResource(R.drawable.ic_launcher_foreground)
         }
         holder.prix.text = "${annonce.prix} DA"
-        holder.img.setTag(position)
+        holder.img.setTag(annonce.id)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -79,7 +81,7 @@ class AnnonceAdapter( annonceList: List<Annonce>): RecyclerView.Adapter<AnnonceA
                 return filterResults
             }
             override fun publishResults(charSequence: CharSequence, filterResults: Filter.FilterResults) {
-                annonceSearchList = filterResults.values as ArrayList<Annonce>
+                annonceSearchList = filterResults.values as List<Annonce>
                 if(annonceSearchList != null) annonceList = annonceSearchList!!
                 else                        annonceList = annonceAllList
                 notifyDataSetChanged()

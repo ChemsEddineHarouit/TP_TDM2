@@ -33,7 +33,7 @@ class WilayaController private constructor(){
 
     }
 
-    fun removeWilayaToMesWilayas(matricule: Int){
+    fun removeWilayafromMesWilayas(matricule: Int){
         try {
             val wilaya = Wilaya.getFromMatricule(matricule) as Wilaya
             val mesWilayasListTemp = this.mesWilayaList?.toMutableList()

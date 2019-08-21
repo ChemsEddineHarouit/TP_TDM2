@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import com.example.tdm2.controllers.WilayaController
+import kotlinx.android.synthetic.main.profile_view_layout.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -85,43 +86,21 @@ class MainActivity : AppCompatActivity() {
 
     fun annonceClicked(view : View) {
         val intent = Intent(this, AnnonceDetailActivity::class.java)
-        val tag = view.getTag() as Int
-        intent.putExtra("position", tag)
+        val id = view.getTag() as Int
+        intent.putExtra("id", id)
         startActivity(intent)
     }
 
-    fun modifierMesWilayas(view : View){
+    fun modifierMesWilayasBtnClicked(view : View){
         val intent = Intent(this, MewWilayasActivity::class.java)
         startActivity(intent)
     }
 
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        ArrayAdapter.createFromResource(
-            this, R.array.annonce_categorie_filter_data, android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_list_item_1)
-            annonce_categorie_filter_spinner.adapter = adapter
-        }
-        annonce_categorie_filter_spinner.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(
-                adapterView: AdapterView<*>, view: View,
-                position: Int, id: Long
-            ) {
-                val item = adapterView.getItemAtPosition(position)
-                if(position == 0){
-                    annonceAdapter.filter.filter("")
-                }
-                else if (item != null) {
-                    annonceAdapter.filter.filter(item.toString())
-                }
-            }
-
-            override fun onNothingSelected(adapterView: AdapterView<*>) {
-                // TODO Auto-generated method stub
-
-            }
-        };
-        return true
+    fun mesAnnoncesBtnClicked(view: View){
+        val intent = Intent(this, MesAnnoncesActivity::class.java)
+        startActivity(intent)
     }
+
+
+
 }

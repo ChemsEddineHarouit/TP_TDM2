@@ -5,15 +5,9 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.LinearLayout
-import com.example.tdm2.adapters.AnnonceAdapter
 import com.example.tdm2.adapters.WilayaAdapter
-import com.example.tdm2.controllers.AnnonceController
 import com.example.tdm2.controllers.WilayaController
-import com.example.tdm2.enumerations.Wilaya
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_mew_wilayas.*
-import android.view.ViewGroup
-import android.widget.CheckBox
 import android.widget.Checkable
 
 
@@ -33,7 +27,7 @@ class MewWilayasActivity : AppCompatActivity() {
 
     }
 
-    fun mesWilayas_save_btn(view: View){
+    fun mesWilayasSaveBtnClicked(view: View){
         val wilayaController = WilayaController.instance
         wilayaController.saveMesWilayas(this)
         finish()
@@ -47,7 +41,7 @@ class MewWilayasActivity : AppCompatActivity() {
             wilayaController.addWilayaToMesWilayas(matricule)
         }
         else{
-            wilayaController.removeWilayaToMesWilayas(matricule)
+            wilayaController.removeWilayafromMesWilayas(matricule)
         }
     }
 

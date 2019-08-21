@@ -3,11 +3,15 @@ package com.example.tdm2
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Checkable
 import com.example.tdm2.controllers.AnnonceController
+import com.example.tdm2.models.Annonce
 
 import kotlinx.android.synthetic.main.activity_annonce_detail.*
 
 class AnnonceDetailActivity : AppCompatActivity() {
+
+    lateinit var annonceCourante : Annonce
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,10 +23,10 @@ class AnnonceDetailActivity : AppCompatActivity() {
                 .setAction("Action", null).show()
         }
 
-        val position = intent.getIntExtra("position", 0)
+        val id = intent.getIntExtra("id", 5)
         val controller = AnnonceController.instance
-        val annonce = controller.annonceList.get(position)
-
+        val annonce = controller.getAnnonceById(id)
+        this.annonceCourante = annonce
         annonce_categorie.text = annonce.categorie
         annonce_contact.text = annonce.contact
         annonce_description.text = annonce.description
@@ -31,6 +35,27 @@ class AnnonceDetailActivity : AppCompatActivity() {
         annonce_surface.text = annonce.surface.toString() + " m²"
         annonce_titre.text = annonce.titre
         annonce_type.text = annonce.type
+        val annonceController = AnnonceController.instance
+        annonce_offLine_switch.isChecked = annonce in annonceController.getMesAnnoncesList(this)
+
+        annonce_offLine_switch.setOnClickListener {
+            val check = it as Checkable
+            val annonceController = AnnonceController.instance
+            if(check.isChecked){
+                annonceController.addAnnonceToMesAnnonces(annonce)
+            }
+            else{
+                annonceController.removeAnnoncefromMesAnnonces(annonce)
+            }
+            annonceController.saveMesAnnonces(this)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val annonceController = AnnonceController.instance
+        annonce_offLine_switch.isChecked = annonceCourante in annonceController.getMesAnnoncesList(this)
+
     }
 
 }
