@@ -11,7 +11,6 @@ import android.widget.TextView
 import com.example.tdm2.R
 import com.example.tdm2.controllers.MediaController
 import com.example.tdm2.models.Annonce
-import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -29,16 +28,7 @@ class AnnonceAdapter( annonceList: List<Annonce>): RecyclerView.Adapter<AnnonceA
         holder.description.text = annonce.description
 
         val img_url = annonce.listPhotos?.first()
-        if(img_url != null){
-
-            val img_drawable = MediaController.loadDrawableFromUrl(img_url)
-            if(img_drawable != null) {
-                holder.img.setImageDrawable(img_drawable)
-            }
-        }
-        else{
-            holder.img.setImageResource(R.drawable.ic_launcher_foreground)
-        }
+        MediaController.loadUrlIntoImg(img_url, holder.img)
         holder.prix.text = "${annonce.prix} DA"
         holder.img.setTag(annonce.id)
     }
