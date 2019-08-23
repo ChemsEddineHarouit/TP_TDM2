@@ -2,6 +2,7 @@ package com.example.tdm2
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.FragmentTransaction
@@ -16,8 +17,7 @@ import com.example.tdm2.models.Annonce
 import kotlinx.android.synthetic.main.activity_annonce_detail.*
 import com.example.tdm2.adapters.AnnonceVideoAdapter
 import android.provider.Telephony
-
-
+import com.example.tdm2.controllers.SMSController
 
 
 class AnnonceDetailActivity : AppCompatActivity(),
@@ -100,20 +100,8 @@ class AnnonceDetailActivity : AppCompatActivity(),
     }
 
     fun shareAnnonceClicked(view:View){
-//        val defaultSmsPackageName =
-//            Telephony.Sms.getDefaultSmsPackage(this) // Need to change the build to API 19
-//        val sendIntent = Intent(Intent.ACTION_SENDTO)
-//        sendIntent.type = "text/plain"
-//        //sendIntent.putExtra("address", add);
-////        sendIntent.data = Uri.parse("smsto:$add")
-//        //TODO set the putExtra value of "sms_body" to the link of the annonce
-//        sendIntent.putExtra("sms_body", "HELLO! c'est mon projet TDM2")
-//        if (defaultSmsPackageName != null)
-//        // Can be null in case that there is no default, then the user would be able to choose
-//        // any app that support this intent.
-//        {
-//            sendIntent.setPackage(defaultSmsPackageName)
-//        }
-//        startActivity(sendIntent)
+        //TODO set the putExtra value of "smsBody" to the link of the annonce
+        val smsBody = "Lien De l'Annonce"
+        SMSController.sendSMS("Mam's", smsBody, this)
     }
 }

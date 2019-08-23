@@ -21,13 +21,13 @@ class AnnonceMediaController private constructor(){
         val INSTANCE: AnnonceMediaController by lazy { Holder.INSTANCE }
         fun loadUrlIntoImg(url: String?, imgView: ImageView){
             if(url == null){
-                imgView.setImageResource(R.drawable.ic_img_not_found)
+                imgView.setImageResource(R.drawable.ic_house)
             }
             else{
                 try {
                     Picasso.with(imgView.context)
                         .load(url)
-                        .error(R.drawable.ic_img_not_found)
+                        .error(R.drawable.ic_house)
                         .into(imgView)
                 } catch (e: Exception) {
                     println(e)

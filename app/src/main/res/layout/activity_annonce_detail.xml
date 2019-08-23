@@ -1,119 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-        android:id="@+id/container"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".AnnonceDetailActivity">
-
-
-    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:id="@+id/container">
+    <ScrollView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            android:layout_height="match_parent"
+            tools:context=".AnnonceDetailActivity">
 
-        <TextView
-                android:text="description."
-                android:layout_width="257dp"
-                android:layout_height="73dp" android:id="@+id/annonce_description"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp" android:layout_marginBottom="108dp"
-                app:layout_constraintBottom_toTopOf="@+id/annonce_prix"/>
-        <TextView
-                android:text="Surface"
-                android:layout_width="116dp"
-                android:layout_height="wrap_content" android:id="@+id/annonce_surface"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="60dp" android:layout_marginTop="68dp"
-                app:layout_constraintTop_toBottomOf="@+id/annonce_description" android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/annonce_prix" app:layout_constraintVertical_bias="0.0"/>
-        <TextView
-                android:text="Type"
-                android:layout_width="116dp"
-                android:layout_height="wrap_content" android:id="@+id/annonce_type"
-                app:layout_constraintTop_toBottomOf="@+id/annonce_titre"
-                android:layout_marginTop="40dp" app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="52dp" android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/annonce_description"
-                app:layout_constraintVertical_bias="0.0"/>
-        <TextView
-                android:text="Localisation"
-                android:layout_width="116dp"
-                android:layout_height="wrap_content" android:id="@+id/annonce_localisation"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="52dp" android:layout_marginTop="68dp"
-                app:layout_constraintTop_toBottomOf="@+id/annonce_description" android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/annonce_prix" app:layout_constraintVertical_bias="0.0"/>
-        <TextView
-                android:text="prix"
-                android:layout_width="116dp"
-                android:layout_height="wrap_content" android:id="@+id/annonce_prix"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-                app:layout_constraintHorizontal_bias="0.498" android:layout_marginBottom="308dp"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-        <TextView
-                android:text="Contact"
-                android:layout_width="116dp"
-                android:layout_height="wrap_content" android:id="@+id/annonce_contact"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="36dp" android:layout_marginBottom="52dp"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-        <TextView
-                android:text="Categorie"
-                android:layout_width="116dp"
-                android:layout_height="wrap_content" android:id="@+id/annonce_categorie"
-                app:layout_constraintTop_toBottomOf="@+id/annonce_titre"
-                android:layout_marginTop="40dp" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="52dp" android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/annonce_description"
-                app:layout_constraintVertical_bias="0.0"/>
-        <TextView
-                android:text="Titre"
-                android:layout_width="116dp"
-                android:layout_height="wrap_content" android:id="@+id/annonce_titre"
-                android:layout_marginTop="92dp"
-                app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="8dp"/>
-        <Switch
-                android:text="Hors Connexion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/annonce_offLine_switch" app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="4dp" android:layout_marginTop="64dp"
-                app:layout_constraintTop_toTopOf="parent"/>
-        <GridView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/annonce_videos_grid"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/annonce_prix" android:id="@+id/annonce_images_grid"
-                android:background="#00000000" android:columnWidth="100dp" android:gravity="center"
-                android:numColumns="auto_fit"/>
-        <GridView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/annonce_contact"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/annonce_images_grid" android:id="@+id/annonce_videos_grid"
-                android:background="#00000000" android:columnWidth="100dp" android:gravity="center"
-                android:numColumns="auto_fit">
-        </GridView>
-        <android.support.design.widget.FloatingActionButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true" app:srcCompat="@android:drawable/ic_menu_send"
-                android:id="@+id/annonce_share_btn"
-                android:layout_marginBottom="12dp"
-                app:layout_constraintBottom_toBottomOf="parent" android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent" android:onClick="shareAnnonceClicked"/>
-    </android.support.constraint.ConstraintLayout>
 
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+        >
+
+            <TextView
+                    android:text="description."
+                    android:layout_width="257dp"
+                    android:layout_height="73dp" android:id="@+id/annonce_description"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp" android:layout_marginBottom="108dp"
+                    app:layout_constraintBottom_toTopOf="@+id/annonce_prix"/>
+            <TextView
+                    android:text="Surface"
+                    android:layout_width="116dp"
+                    android:layout_height="wrap_content" android:id="@+id/annonce_surface"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="60dp" android:layout_marginTop="68dp"
+                    app:layout_constraintTop_toBottomOf="@+id/annonce_description" android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toTopOf="@+id/annonce_prix" app:layout_constraintVertical_bias="0.0"/>
+            <TextView
+                    android:text="Type"
+                    android:layout_width="116dp"
+                    android:layout_height="wrap_content" android:id="@+id/annonce_type"
+                    app:layout_constraintTop_toBottomOf="@+id/annonce_titre"
+                    android:layout_marginTop="40dp" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="52dp" android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toTopOf="@+id/annonce_description"
+                    app:layout_constraintVertical_bias="0.0"/>
+            <TextView
+                    android:text="Localisation"
+                    android:layout_width="116dp"
+                    android:layout_height="wrap_content" android:id="@+id/annonce_localisation"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="52dp" android:layout_marginTop="68dp"
+                    app:layout_constraintTop_toBottomOf="@+id/annonce_description" android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toTopOf="@+id/annonce_prix" app:layout_constraintVertical_bias="0.0"/>
+            <TextView
+                    android:text="prix"
+                    android:layout_width="116dp"
+                    android:layout_height="wrap_content" android:id="@+id/annonce_prix"
+                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                    app:layout_constraintHorizontal_bias="0.498" android:layout_marginBottom="308dp"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            <TextView
+                    android:text="Contact"
+                    android:layout_width="116dp"
+                    android:layout_height="wrap_content" android:id="@+id/annonce_contact"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="36dp" android:layout_marginBottom="52dp"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            <TextView
+                    android:text="Categorie"
+                    android:layout_width="116dp"
+                    android:layout_height="wrap_content" android:id="@+id/annonce_categorie"
+                    app:layout_constraintTop_toBottomOf="@+id/annonce_titre"
+                    android:layout_marginTop="40dp" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="52dp" android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toTopOf="@+id/annonce_description"
+                    app:layout_constraintVertical_bias="0.0"/>
+            <TextView
+                    android:text="Titre"
+                    android:layout_width="116dp"
+                    android:layout_height="wrap_content" android:id="@+id/annonce_titre"
+                    android:layout_marginTop="92dp"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp"/>
+            <Switch
+                    android:text="Hors Connexion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/annonce_offLine_switch" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="4dp" android:layout_marginTop="64dp"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            <GridView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/annonce_videos_grid"
+                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/annonce_prix" android:id="@+id/annonce_images_grid"
+                    android:background="#00000000" android:columnWidth="100dp" android:gravity="center"
+                    android:numColumns="auto_fit"/>
+            <GridView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/annonce_contact"
+                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/annonce_images_grid" android:id="@+id/annonce_videos_grid"
+                    android:background="#00000000" android:columnWidth="100dp" android:gravity="center"
+                    android:numColumns="auto_fit">
+            </GridView>
+
+            <android.support.design.widget.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true" app:srcCompat="@android:drawable/ic_menu_send"
+                    android:id="@+id/annonce_share_btn"
+                    android:layout_marginBottom="12dp"
+                    android:layout_gravity="bottom|end"
+                    app:layout_constraintBottom_toBottomOf="parent" android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent" android:onClick="shareAnnonceClicked"/>
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>
