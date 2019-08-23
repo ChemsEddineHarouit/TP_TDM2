@@ -100,7 +100,9 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, MesAnnoncesActivity::class.java)
         startActivity(intent)
     }
-
-
-
 }
+//end
+
+
+
+

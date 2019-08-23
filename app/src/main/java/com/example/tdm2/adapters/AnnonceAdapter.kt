@@ -9,7 +9,7 @@ import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.tdm2.R
-import com.example.tdm2.controllers.MediaController
+import com.example.tdm2.controllers.AnnonceMediaController
 import com.example.tdm2.models.Annonce
 import kotlin.collections.ArrayList
 
@@ -28,7 +28,7 @@ class AnnonceAdapter( annonceList: List<Annonce>): RecyclerView.Adapter<AnnonceA
         holder.description.text = annonce.description
 
         val img_url = annonce.listPhotos?.first()
-        MediaController.loadUrlIntoImg(img_url, holder.img)
+        AnnonceMediaController.loadUrlIntoImg(img_url, holder.img)
         holder.prix.text = "${annonce.prix} DA"
         holder.img.setTag(annonce.id)
     }

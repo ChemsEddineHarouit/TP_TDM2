@@ -1,23 +1,25 @@
 package com.example.tdm2.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.example.tdm2.controllers.AnnonceMediaController
+import com.example.tdm2.R
+import com.example.tdm2.VideoActivity
 
 
-class AnnonceImageAdapter(context: Context, imagesUrls: List<String>): BaseAdapter(){
+class AnnonceVideoAdapter(context: Context, videosUrls: List<String>): BaseAdapter(){
 
-    val imagesUrls = imagesUrls
+    val videosUrls = videosUrls
     val context = context
 
     override fun getCount(): Int {
-        return imagesUrls.size
+        return videosUrls.size
     }
 
     override fun getItem(position: Int): Any {
-        return imagesUrls[position]
+        return videosUrls[position]
     }
 
     override fun getItemId(position: Int): Long {
@@ -26,10 +28,16 @@ class AnnonceImageAdapter(context: Context, imagesUrls: List<String>): BaseAdapt
 
     override fun getView(position: Int, view: View?, parent: ViewGroup): View {
         val imageView = ImageView(context)
-        AnnonceMediaController.loadUrlIntoImg(imagesUrls[position], imageView)
+        imageView.setImageResource(R.drawable.ic_video)
         imageView.scaleType = ImageView.ScaleType.CENTER_CROP
         imageView.setLayoutParams(AbsListView.LayoutParams(450, 450))
-        imageView.setTag("img")
+        imageView.setTag("vid")
+        imageView.setOnClickListener {
+            val videoUrl = videosUrls.get(position)
+            val intent = Intent(context, VideoActivity::class.java)
+            intent.putExtra("videoUrl", videoUrl)
+            context.startActivity(intent)
+        }
         return imageView
     }
 

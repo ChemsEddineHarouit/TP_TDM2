@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.tdm2.controllers.MediaController
+import com.example.tdm2.controllers.AnnonceMediaController
 import kotlinx.android.synthetic.main.fragment_image.*
 
 
@@ -68,7 +68,7 @@ class ImageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val img_drawable = MediaController.loadUrlIntoImg(imageUrl, annonce_single_image)
+        val img_drawable = AnnonceMediaController.loadUrlIntoImg(imageUrl, annonce_single_image)
         annonce_single_image.setPadding(10, 10, 10, 10)
         annonce_single_image.adjustViewBounds = true
         annonce_single_image.setOnClickListener({
