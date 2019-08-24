@@ -11,4 +11,7 @@
         <item value="locationvacances">Location Vacances</item>
         <item value="echange">Echange</item>
     </string-array>
+    <string name="title_activity_auth">AuthActivity</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Se déconnecter</string>
 </resources>

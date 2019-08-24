@@ -1,16 +1,18 @@
 package com.example.tdm2
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+//import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.StrictMode
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+//import android.support.v7.widget.LinearLayoutManager
+//import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tdm2.adapters.AnnonceAdapter
 import com.example.tdm2.controllers.AnnonceController
 import kotlinx.android.synthetic.main.activity_main.*
@@ -31,7 +33,7 @@ class MesAnnoncesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_mes_annonces)
 
         // Set recyclerView's adapter
-        mes_annonces_list_recycler_view.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
+        mes_annonces_list_recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         val annonceController = AnnonceController.instance
         annonceAdapter = AnnonceAdapter(annonceController.getMesAnnoncesList(this))
         mes_annonces_list_recycler_view.adapter = annonceAdapter

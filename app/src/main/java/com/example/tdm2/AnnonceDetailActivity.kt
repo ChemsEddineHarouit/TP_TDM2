@@ -1,11 +1,14 @@
 package com.example.tdm2
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity;
+//import android.support.design.widget.Snackbar
+//import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar // this changed for androidx
 import android.widget.Checkable
+import androidx.appcompat.app.AppCompatActivity
 import com.example.tdm2.controllers.AnnonceController
 import com.example.tdm2.models.Annonce
+import com.google.android.material.snackbar.Snackbar
 
 import kotlinx.android.synthetic.main.activity_annonce_detail.*
 

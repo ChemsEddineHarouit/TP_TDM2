@@ -3,9 +3,9 @@ package com.example.tdm2
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
+//import android.support.design.widget.BottomNavigationView
+//import android.support.v7.app.AppCompatActivity
+//import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.LinearLayout
 import com.example.tdm2.adapters.AnnonceAdapter
@@ -16,7 +16,11 @@ import android.view.Menu
 import android.widget.ArrayAdapter
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tdm2.controllers.WilayaController
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.profile_view_layout.*
 
 
@@ -31,15 +35,18 @@ class MainActivity : AppCompatActivity() {
                 profile_view.visibility = View.GONE
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_dashboard -> {
-                annonce_list_view.visibility = View.GONE
-                profile_view.visibility = View.GONE
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_notifications -> {
+            R.id.profile -> {
                 annonce_list_view.visibility = View.GONE
                 profile_view.visibility = View.VISIBLE
                 return@OnNavigationItemSelectedListener true
+            }
+            R.id.logout -> {
+                annonce_list_view.visibility = View.GONE
+                profile_view.visibility = View.GONE
+                // sign the user out
+                logout()
+                return@OnNavigationItemSelectedListener true
+
             }
         }
         false
@@ -58,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
         // Set recyclerView's adapter
-        annonce_list_recycler_view.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
+        annonce_list_recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         val annonceController = AnnonceController.instance
         annonceAdapter = AnnonceAdapter(annonceController.annonceList)
         annonce_list_recycler_view.adapter = annonceAdapter
@@ -101,6 +108,13 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun logout(){
+        // logout from firebase
+        FirebaseAuth.getInstance().signOut()
 
+        // redirect to login page
+        val intent = Intent(this, AuthActivity::class.java)
+        startActivity(intent)
+    }
 
 }
