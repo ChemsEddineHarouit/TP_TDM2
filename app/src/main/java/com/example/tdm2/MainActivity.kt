@@ -3,11 +3,8 @@ package com.example.tdm2
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-//import android.support.design.widget.BottomNavigationView
-//import android.support.v7.app.AppCompatActivity
-//import android.support.v7.widget.LinearLayoutManager
+
 import android.view.View
-import android.widget.LinearLayout
 import com.example.tdm2.adapters.AnnonceAdapter
 import com.example.tdm2.controllers.AnnonceController
 import kotlinx.android.synthetic.main.activity_main.*
@@ -17,6 +14,7 @@ import android.widget.ArrayAdapter
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tdm2.controllers.WilayaController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -116,5 +114,9 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, AuthActivity::class.java)
         startActivity(intent)
     }
-
 }
+//end
+
+
+
+

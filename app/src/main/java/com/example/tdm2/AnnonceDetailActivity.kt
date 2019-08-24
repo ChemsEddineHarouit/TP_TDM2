@@ -1,30 +1,44 @@
 package com.example.tdm2
 
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
-//import android.support.design.widget.Snackbar
-//import android.support.v7.app.AppCompatActivity;
+import android.view.View
+import android.widget.AdapterView
+
 import androidx.appcompat.widget.Toolbar // this changed for androidx
 import android.widget.Checkable
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
+//import androidx.fragment.app.FragmentTransaction
+
+import com.example.tdm2.adapters.AnnonceImageAdapter
 import com.example.tdm2.controllers.AnnonceController
 import com.example.tdm2.models.Annonce
-import com.google.android.material.snackbar.Snackbar
 
 import kotlinx.android.synthetic.main.activity_annonce_detail.*
+import com.example.tdm2.adapters.AnnonceVideoAdapter
+import com.example.tdm2.controllers.SMSController
 
-class AnnonceDetailActivity : AppCompatActivity() {
+
+class AnnonceDetailActivity : AppCompatActivity(),
+    AdapterView.OnItemClickListener,
+    ImageFragment.OnFragmentInteractionListener{
 
     lateinit var annonceCourante : Annonce
+    lateinit var annonceImageAdapter: AnnonceImageAdapter
+    lateinit var annonceVideoAdapter: AnnonceVideoAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_annonce_detail)
-        setSupportActionBar(toolbar)
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+//        setSupportActionBar(toolbar)
+//        fab.setOnClickListener { view ->
+//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show()
+//        }
 
         val id = intent.getIntExtra("id", 5)
         val controller = AnnonceController.instance
@@ -52,6 +66,21 @@ class AnnonceDetailActivity : AppCompatActivity() {
             }
             annonceController.saveMesAnnonces(this)
         }
+
+        if(annonce.listPhotos != null){
+            annonceImageAdapter = AnnonceImageAdapter(this, annonce.listPhotos)
+            annonce_images_grid.adapter = annonceImageAdapter
+            annonce_images_grid.setOnItemClickListener(this)
+        }
+
+        if(annonce.listVideo != null){
+            annonceVideoAdapter = AnnonceVideoAdapter(this, annonce.listVideo)
+            annonce_videos_grid.adapter = annonceVideoAdapter
+            annonce_videos_grid.setOnItemClickListener(this)
+        }
+    }
+    override fun onFragmentInteraction(uri: Uri) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onResume() {
@@ -61,4 +90,21 @@ class AnnonceDetailActivity : AppCompatActivity() {
 
     }
 
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+        val imgUrl = annonceCourante.listPhotos?.get(position) as String
+        val imageFragment = ImageFragment.newInstance(imgUrl)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.container, imageFragment)
+            .addToBackStack(imageFragment.toString())
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            .commit()
+    }
+
+    fun shareAnnonceClicked(view: View){
+        //TODO set the putExtra value of "smsBody" to the link of the annonce
+        val smsBody = "Lien De l'Annonce"
+        SMSController.sendSMS("Mam's", smsBody, this)
+    }
 }

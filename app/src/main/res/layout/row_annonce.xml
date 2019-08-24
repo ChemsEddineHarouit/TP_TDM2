@@ -22,7 +22,7 @@
             app:layout_constraintEnd_toStartOf="@+id/row_annonce_img" android:layout_marginEnd="52dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
             app:layout_constraintHorizontal_bias="1.0"
-            android:layout_marginBottom="80dp" app:layout_constraintBottom_toBottomOf="parent"/>
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"/>
     <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
@@ -32,6 +32,7 @@
             android:layout_marginBottom="28dp" android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.186"
             android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/row_annonce_img"/>
+
     <ImageView
             android:onClick="annonceClicked"
             android:layout_width="123dp"
@@ -41,4 +42,11 @@
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.0"
             android:layout_marginEnd="36dp" app:layout_constraintEnd_toEndOf="parent"/>
+
+    <View style="@style/Divider.Horizontal" android:layout_height="wrap_content" android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/row_annonce_prix" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" android:layout_marginTop="4dp" app:layout_constraintHorizontal_bias="0.208"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+

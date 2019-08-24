@@ -11,7 +11,12 @@
         <item value="locationvacances">Location Vacances</item>
         <item value="echange">Echange</item>
     </string-array>
+
     <string name="title_activity_auth">AuthActivity</string>
     <string name="profile">Profile</string>
     <string name="logout">Se déconnecter</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="buffering_string">Chargement</string>
 </resources>
