@@ -1,18 +1,15 @@
 package com.example.tdm2
 
-import android.content.Intent
+
+
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
-
-import androidx.appcompat.widget.Toolbar // this changed for androidx
 import android.widget.Checkable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-//import androidx.fragment.app.FragmentTransaction
 
 import com.example.tdm2.adapters.AnnonceImageAdapter
 import com.example.tdm2.controllers.AnnonceController
@@ -94,7 +91,7 @@ class AnnonceDetailActivity : AppCompatActivity(),
 
         val imgUrl = annonceCourante.listPhotos?.get(position) as String
         val imageFragment = ImageFragment.newInstance(imgUrl)
-        supportFragmentManager
+            supportFragmentManager
             .beginTransaction()
             .replace(R.id.container, imageFragment)
             .addToBackStack(imageFragment.toString())

@@ -2,13 +2,13 @@ package com.example.tdm2
 
 import android.os.Build
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.widget.MediaController
 import android.widget.TextView
 import android.widget.VideoView
+import androidx.appcompat.app.AppCompatActivity
 import com.example.tdm2.controllers.AnnonceMediaController
 
-class VideoActivity:AppCompatActivity() {
+class VideoActivity: AppCompatActivity() {
 
     private var annonceVideoView:VideoView? = null
     private var bufferingTextView:TextView? = null
