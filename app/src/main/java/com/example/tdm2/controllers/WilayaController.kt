@@ -18,6 +18,15 @@ class WilayaController private constructor(){
         }
     }
 
+    fun getMesWilayasMatricule(context: Context): List<Int> {
+        val mesWilayaList = this.getMesWilayas(context)
+        val mesWilayaListMatricule = arrayListOf<Int>()
+        for (wil in mesWilayaList){
+            mesWilayaListMatricule.add(wil.getMatricule())
+        }
+        return mesWilayaListMatricule
+    }
+
     fun addWilayaToMesWilayas(matricule: Int){
         try {
             val wilaya = Wilaya.getFromMatricule(matricule) as Wilaya
@@ -68,6 +77,7 @@ class WilayaController private constructor(){
     }
     companion object {
         val instance: WilayaController by lazy { Holder.INSTANCE }
+
         fun getAllWilayas() : List<Wilaya>{
             val allWilayasList = Wilaya.values()
             return allWilayasList.sortedWith(compareBy { it.getMatricule() })

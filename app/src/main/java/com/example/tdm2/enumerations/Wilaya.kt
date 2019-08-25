@@ -1,6 +1,8 @@
 package com.example.tdm2.enumerations
 
-enum class Wilaya {
+import java.util.*
+
+enum class Wilaya: Comparable<Wilaya> {
     Tlemcen {
         override fun getMatricule() = 13
         override fun toString() = "Tlemcen"
@@ -200,5 +202,6 @@ enum class Wilaya {
         private val map = values().associateBy(Wilaya::getMatricule)
         fun getFromMatricule(type: Int) = map[type]
     }
+
 }
 

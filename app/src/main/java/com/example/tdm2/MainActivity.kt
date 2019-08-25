@@ -17,6 +17,7 @@ import android.widget.AdapterView.OnItemSelectedListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.tdm2.controllers.WilayaController
 import com.example.tdm2.models.Annonce
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -74,12 +75,12 @@ class MainActivity : AppCompatActivity() {
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
         // Set recyclerView's adapter
-        annonce_list_recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        annonce_list_recycler_view.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 //        val annonceController = AnnonceController.instance
 //        annonceAdapter = AnnonceAdapter(annonceController.annonceList)
 //        annonce_list_recycler_view.adapter = annonceAdapter
         // Set recyclerView's adapter
-        annonce_list_recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        annonce_list_recycler_view.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         val annonceController = AnnonceController.instance
         annonceAdapter = AnnonceAdapter(annonceController.annonceList)
 //        annonce_list_recycler_view.adapter = annonceAdapter
@@ -159,7 +160,6 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 }
-//end
 
 
 
