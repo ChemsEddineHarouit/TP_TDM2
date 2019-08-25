@@ -1,5 +1,7 @@
 package com.example.tdm2
 
+import android.app.Notification
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -94,16 +96,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun callRSS() {
-
         coroutineScope.launch(Dispatchers.Main) {
             try {
                 val parser = Parser()
                 val articleList = parser.getArticles(url)
                 val annonces = mutableListOf<Annonce>()
                 articleList.forEachIndexed { i, a ->
-                    annonces.add(Annonce.fromArticle(a, i))
+                    val annonce = Annonce.fromArticle(a, i)
+                    notifyIfMesWilayas(annonce)
+                    annonces.add(annonce)
                 }
-
                 annonce_list_recycler_view.adapter = AnnonceAdapter(annonces)
                 AnnonceController.instance.annonceList = annonces
                 AnnonceController.instance.updateAllAnnonceMap()
@@ -111,11 +113,12 @@ class MainActivity : AppCompatActivity() {
                 Log.d("article", articleList.toString())
             } catch (e: Exception) {
                 e.printStackTrace()
-
             }
         }
+    }
 
-
+    private fun notifyIfMesWilayas(annonce: Annonce) {
+        WilayaController.notifyIfMesWilayas(this as Context, annonce.wilaya, annonce.link)
     }
 
     private fun set_monProfileData(context: Context) {
