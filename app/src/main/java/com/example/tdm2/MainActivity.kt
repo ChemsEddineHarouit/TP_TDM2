@@ -9,6 +9,7 @@ import com.example.tdm2.adapters.AnnonceAdapter
 import com.example.tdm2.controllers.AnnonceController
 import kotlinx.android.synthetic.main.activity_main.*
 import android.os.StrictMode
+import android.util.Log
 import android.view.Menu
 import android.widget.ArrayAdapter
 import android.widget.AdapterView
@@ -17,14 +18,24 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tdm2.controllers.WilayaController
+import com.example.tdm2.models.Annonce
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.prof.rssparser.Parser
 import kotlinx.android.synthetic.main.profile_view_layout.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var annonceAdapter: AnnonceAdapter
+    var url = "https://www.algerimmo.com/rss/"
+
+    private val viewModelJob = Job()
+    private val coroutineScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -64,13 +75,46 @@ class MainActivity : AppCompatActivity() {
 
         // Set recyclerView's adapter
         annonce_list_recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+//        val annonceController = AnnonceController.instance
+//        annonceAdapter = AnnonceAdapter(annonceController.annonceList)
+//        annonce_list_recycler_view.adapter = annonceAdapter
+        // Set recyclerView's adapter
+        annonce_list_recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         val annonceController = AnnonceController.instance
         annonceAdapter = AnnonceAdapter(annonceController.annonceList)
-        annonce_list_recycler_view.adapter = annonceAdapter
+//        annonce_list_recycler_view.adapter = annonceAdapter
 
 
         //Set mon profile
         set_monProfileData(this)
+
+        callRSS()
+
+    }
+
+    private fun callRSS() {
+
+        coroutineScope.launch(Dispatchers.Main) {
+            try {
+                val parser = Parser()
+                val articleList = parser.getArticles(url)
+                val annonces = mutableListOf<Annonce>()
+                articleList.forEachIndexed { i, a ->
+                    annonces.add(Annonce.fromArticle(a, i))
+                }
+
+                annonce_list_recycler_view.adapter = AnnonceAdapter(annonces)
+                AnnonceController.instance.annonceList = annonces
+                AnnonceController.instance.updateAllAnnonceMap()
+
+                Log.d("article", articleList.toString())
+            } catch (e: Exception) {
+                e.printStackTrace()
+
+            }
+        }
+
+
     }
 
     private fun set_monProfileData(context: Context) {
