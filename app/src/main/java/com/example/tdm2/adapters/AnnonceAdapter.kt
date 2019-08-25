@@ -27,6 +27,7 @@ class AnnonceAdapter( annonceList: List<Annonce>): RecyclerView.Adapter<AnnonceA
         val annonce = annonceList[position]
         holder.titre.text = annonce.titre
         holder.description.text = annonce.description
+        holder.type.text = annonce.type
 
         val img_url = annonce.listPhotos?.first()
         AnnonceMediaController.loadUrlIntoImg(img_url, holder.img)
@@ -48,6 +49,7 @@ class AnnonceAdapter( annonceList: List<Annonce>): RecyclerView.Adapter<AnnonceA
         val description = itemView.findViewById<TextView>(R.id.row_annonce_description)
         val img = itemView.findViewById<ImageView>(R.id.row_annonce_img)
         val prix = itemView.findViewById<TextView>(R.id.row_annonce_prix)
+        val type = itemView.findViewById<TextView>(R.id.row_annonce_type)
     }
 
     override fun getFilter(): Filter {

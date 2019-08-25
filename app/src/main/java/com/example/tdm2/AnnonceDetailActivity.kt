@@ -100,8 +100,7 @@ class AnnonceDetailActivity : AppCompatActivity(),
     }
 
     fun shareAnnonceClicked(view: View){
-        //TODO set the putExtra value of "smsBody" to the link of the annonce
-        val smsBody = "Lien De l'Annonce"
-        SMSController.sendSMS("Mam's", smsBody, this)
+        val annonceLink = annonceCourante.link
+        SMSController.sendSMS("Mam's", annonceLink, this)
     }
 }

@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_mew_wilayas.*
 import android.widget.Checkable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 
 class MewWilayasActivity : AppCompatActivity() {
@@ -22,9 +23,9 @@ class MewWilayasActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mew_wilayas)
 
-        wilayas_recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        wilayas_recycler_view.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         val wilayaController = WilayaController.instance
-        wilayaAdapter = WilayaAdapter(wilayaController.getMesWilayas(this))
+        wilayaAdapter = WilayaAdapter(wilayaController.getMesWilayasMatricule(this))
         wilayas_recycler_view.adapter = wilayaAdapter
 
     }

@@ -6,8 +6,9 @@ import com.prof.rssparser.Article
 
 class Annonce(id : Int, categorie : String, type : String, localisation : String, wilaya: Wilaya,
               titre : String, surface : Int, description : String, prix : Int, contact : String,
-              listPhotos : List<String>?, listVideo : List<String>?){
+              listPhotos : List<String>?, listVideo : List<String>?, link: String){
     val id = id
+    val link = link
     val titre = titre
     val categorie = categorie
     val type = type
@@ -23,7 +24,7 @@ class Annonce(id : Int, categorie : String, type : String, localisation : String
         val annonce_2 = other as Annonce
         return (this.id == annonce_2.id)
     }
-
+    // TODO a.link in Annonce
     companion object{
         fun fromArticle(a: Article, id:Int =0): Annonce {
             val prix = 15000
@@ -43,6 +44,9 @@ class Annonce(id : Int, categorie : String, type : String, localisation : String
             if (description.length > 150){
                 description = description.substring(0, 150) + " ..."
             }
+            var imageList : List<String>? = null
+            if (a.image != null)
+                imageList = listOf(a.image.toString())
 //            Log.d("prix", description)
             return Annonce(
                 id,
@@ -55,8 +59,9 @@ class Annonce(id : Int, categorie : String, type : String, localisation : String
                 description,
                 prix, // TODO  change
                 a.author.toString(), // TODO  change
-                listOf(a.image.toString()),
-                listOf() // TODO  change
+                imageList,
+                null, // TODO  change
+                a.link as String
             )
         }
     }

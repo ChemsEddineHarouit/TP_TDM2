@@ -14,18 +14,18 @@ import com.example.tdm2.controllers.WilayaController
 import com.example.tdm2.enumerations.Wilaya
 
 
-class WilayaAdapter( mesWilayasList: List<Wilaya>): RecyclerView.Adapter<WilayaAdapter.ViewHolder>(){
+class WilayaAdapter(mesWilayasMatricules: List<Int>): RecyclerView.Adapter<WilayaAdapter.ViewHolder>(){
 
-    var mesWilayasList = mesWilayasList
+    var mesWilayasMatricules = mesWilayasMatricules
     val wilayaList = WilayaController.getAllWilayas()
+
+
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val wilaya = wilayaList[position]
         holder.nom.text = wilaya.toString()
         holder.matricule.text = wilaya.getMatricule().toString()
-        if(wilaya in mesWilayasList){
-            holder.check.isChecked = true
-        }
+        holder.check.isChecked = wilaya.getMatricule() in mesWilayasMatricules
         val checkBox = holder.check as CheckBox
         checkBox.setTag(wilaya.getMatricule())
     }
