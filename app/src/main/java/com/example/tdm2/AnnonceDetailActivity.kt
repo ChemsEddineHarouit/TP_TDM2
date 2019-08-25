@@ -4,9 +4,11 @@ package com.example.tdm2
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Checkable
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -18,6 +20,10 @@ import com.example.tdm2.models.Annonce
 import kotlinx.android.synthetic.main.activity_annonce_detail.*
 import com.example.tdm2.adapters.AnnonceVideoAdapter
 import com.example.tdm2.controllers.SMSController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import java.util.*
+import kotlin.collections.HashMap
 
 
 class AnnonceDetailActivity : AppCompatActivity(),
@@ -75,7 +81,96 @@ class AnnonceDetailActivity : AppCompatActivity(),
             annonce_videos_grid.adapter = annonceVideoAdapter
             annonce_videos_grid.setOnItemClickListener(this)
         }
+
+        init_save_signet_btn(annonce)
+        save_signet_btn.setOnClickListener{
+            val check = it as Checkable
+            if (check.isChecked){
+                saveSignet(annonce)    
+            }
+            else {
+                removeFromSignets(annonce)
+            }
+        }
     }
+
+    private fun init_save_signet_btn(annonce: Annonce) {
+        val uid = FirebaseAuth.getInstance().uid.toString()
+        val db = FirebaseDatabase.getInstance().reference
+        val key = annonce.id.toString()
+        val ref = db.child("userSignets").child(uid)
+
+        save_signet_btn.isClickable = false
+        save_signet_btn.isChecked = false
+
+        val childEventListener = object : ChildEventListener {
+            override fun onChildMoved(p0: DataSnapshot, p1: String?) {
+                Log.e("switcher", "onChildMoved: ${p0.getValue(String::class.java)}")
+            }
+
+            override fun onChildChanged(p0: DataSnapshot, p1: String?) {
+                Log.e("switcher", "onChildChanged: ${p0.key}")
+            }
+
+            override fun onChildAdded(p0: DataSnapshot, p1: String?) {
+                val added = p0.key.equals(key)
+
+                save_signet_btn.isClickable = true
+                if (!save_signet_btn.isChecked)
+                    save_signet_btn.isChecked = added
+
+                Log.e("switcher", "onChildAdded: $added")
+            }
+
+            override fun onChildRemoved(p0: DataSnapshot) {
+                Log.e("switcher", "onChildRemoved: ${p0.key}")
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+                Log.e("switcher", "error init")
+            }
+        }
+        ref.addChildEventListener(childEventListener)
+    }
+
+    private fun removeFromSignets(annonce: Annonce) {
+        val uid = FirebaseAuth.getInstance().uid.toString()
+        val db = FirebaseDatabase.getInstance().reference
+
+        // remove link from db
+        val childUpdates = HashMap<String, Any?>()
+        childUpdates["/userSignets/$uid/${annonce.id}"] = null
+
+        db.updateChildren(childUpdates)
+            .addOnSuccessListener {
+                Toast.makeText(this, "delete successfully $it", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "delete failed $it", Toast.LENGTH_SHORT).show()
+
+            }
+    }
+
+    private fun saveSignet(annonce: Annonce) {
+        val link = annonce.link
+        val uid = FirebaseAuth.getInstance().uid.toString()
+
+        val db = FirebaseDatabase.getInstance().reference
+
+        // add link to db
+        val childUpdates = HashMap<String, Any>()
+        childUpdates["/userSignets/$uid/${annonce.id}"] = link
+
+        db.updateChildren(childUpdates)
+            .addOnSuccessListener {
+                Toast.makeText(this, "added successfully $it", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "adding failed $it", Toast.LENGTH_SHORT).show()
+
+            }
+    }
+
     override fun onFragmentInteraction(uri: Uri) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
