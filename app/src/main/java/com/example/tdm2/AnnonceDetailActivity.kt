@@ -105,11 +105,11 @@ class AnnonceDetailActivity : AppCompatActivity(),
 
         val childEventListener = object : ChildEventListener {
             override fun onChildMoved(p0: DataSnapshot, p1: String?) {
-                Log.e("switcher", "onChildMoved: ${p0.getValue(String::class.java)}")
+                Log.d("switcher", "onChildMoved: ${p0.getValue(String::class.java)}")
             }
 
             override fun onChildChanged(p0: DataSnapshot, p1: String?) {
-                Log.e("switcher", "onChildChanged: ${p0.key}")
+                Log.d("switcher", "onChildChanged: ${p0.key}")
             }
 
             override fun onChildAdded(p0: DataSnapshot, p1: String?) {
@@ -119,15 +119,15 @@ class AnnonceDetailActivity : AppCompatActivity(),
                 if (!save_signet_btn.isChecked)
                     save_signet_btn.isChecked = added
 
-                Log.e("switcher", "onChildAdded: $added")
+                Log.d("switcher", "onChildAdded: $added")
             }
 
             override fun onChildRemoved(p0: DataSnapshot) {
-                Log.e("switcher", "onChildRemoved: ${p0.key}")
+                Log.d("switcher", "onChildRemoved: ${p0.key}")
             }
 
             override fun onCancelled(p0: DatabaseError) {
-                Log.e("switcher", "error init")
+                Log.d("switcher", "error init")
             }
         }
         ref.addChildEventListener(childEventListener)
@@ -152,14 +152,13 @@ class AnnonceDetailActivity : AppCompatActivity(),
     }
 
     private fun saveSignet(annonce: Annonce) {
-        val link = annonce.link
         val uid = FirebaseAuth.getInstance().uid.toString()
 
         val db = FirebaseDatabase.getInstance().reference
 
         // add link to db
         val childUpdates = HashMap<String, Any>()
-        childUpdates["/userSignets/$uid/${annonce.id}"] = link
+        childUpdates["/userSignets/$uid/${annonce.id}"] = annonce
 
         db.updateChildren(childUpdates)
             .addOnSuccessListener {

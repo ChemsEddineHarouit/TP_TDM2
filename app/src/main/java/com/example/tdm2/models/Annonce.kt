@@ -20,6 +20,9 @@ class Annonce(id : Int, categorie : String, type : String, localisation : String
     val contact = contact
     val listPhotos = listPhotos
     val listVideo = listVideo
+
+    constructor(): this(-1, "", "", "", Wilaya.Alger, "", 0, "", 0, "", null, null, "")
+
     override fun equals(other: Any?): Boolean {
         val annonce_2 = other as Annonce
         return (this.id == annonce_2.id)
