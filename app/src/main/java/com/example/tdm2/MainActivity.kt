@@ -155,6 +155,11 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun mesSignetsBtnClicked(view: View){
+        val intent = Intent(this, MesSignetsActivity::class.java)
+        startActivity(intent)
+    }
+
     fun logout(){
         // logout from firebase
         FirebaseAuth.getInstance().signOut()

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.example.tdm2">
-
+          package="com.example.tdm2">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CALL_PHONE"/>
@@ -15,29 +14,31 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
+                android:name=".MesSignetsActivity"
+                android:label="@string/title_activity_mes_signets"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
                 android:name=".MainActivity"
                 android:label="TDM2"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".MesAnnoncesActivity"></activity>
-        <activity android:name=".MewWilayasActivity"></activity>
-
+        <activity android:name=".MesAnnoncesActivity"/>
+        <activity android:name=".MewWilayasActivity"/>
         <activity android:name=".VideoActivity">
         </activity>
-
         <activity
                 android:name=".AnnonceDetailActivity"
                 android:label="@string/title_activity_annonce_detail"
-                android:theme="@style/AppTheme.NoActionBar"></activity>
+                android:theme="@style/AppTheme.NoActionBar"/>
         <activity
                 android:name=".AuthActivity"
                 android:label="@string/app_name">
-
         </activity>
     </application>
 

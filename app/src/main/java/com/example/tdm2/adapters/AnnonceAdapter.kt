@@ -21,18 +21,23 @@ class AnnonceAdapter( annonceList: List<Annonce>): RecyclerView.Adapter<AnnonceA
     var annonceSearchList = annonceList
     val annonceAllList = annonceList
 
+    val MAX_CHAR_TO_DISPLAY = 120
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val annonce = annonceList[position]
         holder.titre.text = annonce.titre
-        holder.description.text = annonce.description
+        if(annonce.description.length > MAX_CHAR_TO_DISPLAY)
+            holder.description.text = annonce.description.take(MAX_CHAR_TO_DISPLAY) + "..."
+        else
+            holder.description.text = annonce.description.take(MAX_CHAR_TO_DISPLAY)
         holder.type.text = annonce.type
 
         val img_url = annonce.listPhotos?.first()
         AnnonceMediaController.loadUrlIntoImg(img_url, holder.img)
         holder.prix.text = "${annonce.prix} DA"
         holder.img.setTag(annonce.id)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -61,9 +66,7 @@ class AnnonceAdapter( annonceList: List<Annonce>): RecyclerView.Adapter<AnnonceA
                 } else {
                     val filteredList = ArrayList<Annonce>()
                     for (annonce in annonceAllList) {
-                        println("------------------------------------------------------------")
-                        println(annonce.categorie.toLowerCase() + " - " + charString.toLowerCase() + " - " +  annonce.categorie.toLowerCase().equals(charString.toLowerCase()))
-                        if (annonce.categorie.toLowerCase().equals(charString.toLowerCase())) {
+                        if (annonce.categorie.toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(annonce)
                         }
                     }

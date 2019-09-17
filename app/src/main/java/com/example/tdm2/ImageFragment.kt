@@ -13,8 +13,7 @@ import kotlinx.android.synthetic.main.fragment_image.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val IMG_URL = "param1"
 
 /**
  * A simple [Fragment] subclass.
@@ -26,14 +25,13 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 class ImageFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     lateinit var imageUrl: String
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            imageUrl = it.getString(ARG_PARAM1) as String
+            imageUrl = it.getString(IMG_URL) as String
         }
 
     }
@@ -47,7 +45,6 @@ class ImageFragment : Fragment() {
 
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {
         listener?.onFragmentInteraction(uri)
     }
@@ -90,7 +87,6 @@ class ImageFragment : Fragment() {
      * for more information.
      */
     interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         fun onFragmentInteraction(uri: Uri)
     }
 
@@ -103,12 +99,11 @@ class ImageFragment : Fragment() {
          * @param param2 Parameter 2.
          * @return A new instance of fragment ImageFragment.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String) =
             ImageFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
+                    putString(IMG_URL, param1)
                 }
             }
     }

@@ -24,7 +24,6 @@ class Annonce(id : Int, categorie : String, type : String, localisation : String
         val annonce_2 = other as Annonce
         return (this.id == annonce_2.id)
     }
-    // TODO a.link in Annonce
     companion object{
         fun fromArticle(a: Article, id:Int =0): Annonce {
             val prix = 15000
@@ -49,12 +48,12 @@ class Annonce(id : Int, categorie : String, type : String, localisation : String
                 imageList = listOf(a.image.toString())
 
             // default value: vente
-            var categorie = "vente"
+            var categorie = "Vente"
             if (description.contains("location",true) || description.contains("louer",true)){
-                categorie = "location"
+                categorie = "Location"
             }
             else if (description.contains("change ", true)){
-                categorie = "echange"
+                categorie = "Echange"
             }
 
             return Annonce(

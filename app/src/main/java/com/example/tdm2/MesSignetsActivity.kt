@@ -6,21 +6,16 @@ import android.os.Bundle
 import android.os.StrictMode
 //import android.support.v7.widget.LinearLayoutManager
 //import android.support.v7.widget.RecyclerView
-import android.view.Menu
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.tdm2.adapters.AnnonceAdapter
 import com.example.tdm2.controllers.AnnonceController
 import kotlinx.android.synthetic.main.activity_mes_annonces.*
+import kotlinx.android.synthetic.main.activity_mes_signets.mes_annonces_list_recycler_view as mes_signets_list_recycler_view1
 
-class MesAnnoncesActivity : AppCompatActivity() {
+class MesSignetsActivity : AppCompatActivity() {
     //thread policy problem solved because I could not load img from url async
-
-
     lateinit var annonceAdapter: AnnonceAdapter
 
 
@@ -29,11 +24,12 @@ class MesAnnoncesActivity : AppCompatActivity() {
         StrictMode.setThreadPolicy(policy)
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_mes_annonces)
+        setContentView(R.layout.activity_mes_signets)
 
         // Set recyclerView's adapter
-        mes_annonces_list_recycler_view.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        mes_annonces_list_recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         val annonceController = AnnonceController.instance
+        //TODO Change next line where "annonceController.getMesAnnoncesList()" must be replaced by a list of annonces from firebase (signets)
         annonceAdapter = AnnonceAdapter(annonceController.getMesAnnoncesList(this))
         mes_annonces_list_recycler_view.adapter = annonceAdapter
 
@@ -46,36 +42,10 @@ class MesAnnoncesActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        ArrayAdapter.createFromResource(
-            this, R.array.annonce_categorie_filter_data, android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_list_item_1)
-            mes_annonces_categorie_filter_spinner.adapter = adapter
-        }
-        mes_annonces_categorie_filter_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                adapterView: AdapterView<*>, view: View,
-                position: Int, id: Long
-            ) {
-                val item = adapterView.getItemAtPosition(position)
-                if(position == 0){
-                    annonceAdapter.filter.filter("")
-                }
-                else if (item != null) {
-                    annonceAdapter.filter.filter(item.toString())
-                }
-            }
-
-            override fun onNothingSelected(adapterView: AdapterView<*>) {
-            }
-        };
-        return true
-    }
-
     override fun onResume() {
         super.onResume()
         val annonceController = AnnonceController.instance
+        //TODO Change next line where "annonceController.getMesAnnoncesList()" must be replaced by a list of annonces from firebase (signets)
         annonceAdapter.annonceList = annonceController.getMesAnnoncesList(this)
         annonceAdapter.notifyDataSetChanged()
 
