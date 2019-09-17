@@ -47,10 +47,19 @@ class Annonce(id : Int, categorie : String, type : String, localisation : String
             var imageList : List<String>? = null
             if (a.image != null)
                 imageList = listOf(a.image.toString())
-//            Log.d("prix", description)
+
+            // default value: vente
+            var categorie = "vente"
+            if (description.contains("location",true) || description.contains("louer",true)){
+                categorie = "location"
+            }
+            else if (description.contains("change ", true)){
+                categorie = "echange"
+            }
+
             return Annonce(
                 id,
-                a.categories.toString(),
+                categorie,
                 type,
                 a.content.toString(),
                 Wilaya.Alger, // TODO  change
