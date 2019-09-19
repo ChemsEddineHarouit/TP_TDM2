@@ -21,7 +21,7 @@ class AnnonceAdapter( annonceList: List<Annonce>): RecyclerView.Adapter<AnnonceA
     var annonceSearchList = annonceList
     val annonceAllList = annonceList
 
-    val MAX_CHAR_TO_DISPLAY = 120
+    val MAX_CHAR_TO_DISPLAY = 100
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -31,7 +31,7 @@ class AnnonceAdapter( annonceList: List<Annonce>): RecyclerView.Adapter<AnnonceA
             holder.description.text = annonce.description.take(MAX_CHAR_TO_DISPLAY) + "..."
         else
             holder.description.text = annonce.description.take(MAX_CHAR_TO_DISPLAY)
-        holder.type.text = annonce.type
+        holder.type.text = annonce.categorie + " / " + annonce.type + " / " + annonce.wilaya
 
         val img_url = annonce.listPhotos?.first()
         AnnonceMediaController.loadUrlIntoImg(img_url, holder.img)

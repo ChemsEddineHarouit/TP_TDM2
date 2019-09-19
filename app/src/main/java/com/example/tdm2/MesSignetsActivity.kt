@@ -55,6 +55,7 @@ class MesSignetsActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         //TODO Change next line where "annonceController.getMesAnnoncesList()" must be replaced by a list of annonces from firebase (signets)
+        readAnnonces()
         annonceAdapter.annonceList = annonceList as List<Annonce>
         annonceAdapter.notifyDataSetChanged()
 //        readAnnonces()

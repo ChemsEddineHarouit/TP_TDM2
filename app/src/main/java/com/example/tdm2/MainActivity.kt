@@ -21,6 +21,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tdm2.controllers.WilayaController
+import com.example.tdm2.enumerations.Wilaya
 import com.example.tdm2.models.Annonce
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -102,6 +103,16 @@ class MainActivity : AppCompatActivity() {
                 val parser = Parser()
                 val articleList = parser.getArticles(url)
                 val annonces = mutableListOf<Annonce>()
+                //Static annonce
+                annonces.add(
+                    Annonce(-1, "location", "villa", "Ben Aknoun", Wilaya.Alger, "Location d'une Villa Ben Aknoun", 200,
+                    "Louer cette villa vous serez heureux!", 200000, "0647743057",
+                    listOf("https://d1ez3020z2uu9b.cloudfront.net/imagecache/rental-homes-photos-spain/Original/23591/9582456-23591-Marbella-Villa_Crop_725_600.jpg",
+                        "https://odis.homeaway.com/odis/listing/7e04139f-1678-4a69-a9dc-d86be6bd80c6.c10.jpg",
+                        "https://d1ez3020z2uu9b.cloudfront.net/imagecache/rental-homes-photos-spain/Original/7331/1653978-7331-Adeje-Villa_Crop_725_600.jpg",
+                        "https://cdn.samui-villa.com/cache/512-samui-en/villas/skydream-villa/skydream-villa-dji-0835-edit-589a89aea569e.jpg"),
+                    listOf("https://developers.google.com/training/images/tacoma_narrows.mp4"), "statique pas de lien")
+                )
                 articleList.forEachIndexed { i, a ->
                     val annonce = Annonce.fromArticle(a, i)
                     notifyIfMesWilayas(annonce)

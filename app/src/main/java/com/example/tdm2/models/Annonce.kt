@@ -59,6 +59,9 @@ class Annonce(id : Int, categorie : String, type : String, localisation : String
                 categorie = "Echange"
             }
 
+            val contact: String
+            if(a.author == null) contact = "0541543357"
+            else contact = a.author.toString()
             return Annonce(
                 id,
                 categorie,
@@ -69,7 +72,7 @@ class Annonce(id : Int, categorie : String, type : String, localisation : String
                 150, // TODO  change
                 description,
                 prix, // TODO  change
-                a.author.toString(), // TODO  change
+                contact, // TODO  change
                 imageList,
                 null, // TODO  change
                 a.link as String

@@ -48,7 +48,7 @@ class AnnonceDetailActivity : AppCompatActivity(),
         val annonce = controller.getAnnonceById(id)
         this.annonceCourante = annonce
         annonce_categorie.text = annonce.categorie
-        annonce_contact.text = annonce.contact
+        annonce_contact.text = "Appelez le: "+ annonce.contact
         annonce_description.text = annonce.description
         annonce_localisation.text = annonce.localisation
         annonce_prix.text = annonce.prix.toString() + " DA"
